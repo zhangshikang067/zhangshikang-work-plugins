@@ -1,0 +1,4 @@
+interface:
+  display_name: "OKR Weekly Report Writer"
+  short_description: "Write clear OKR-style weekly reports"
+  default_prompt: "Use $okr-weekly-report-writer to rewrite my weekly report so outcomes, metrics, risks, and next steps are clear."
