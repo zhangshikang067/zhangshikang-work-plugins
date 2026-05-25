@@ -1,21 +1,87 @@
 ---
 name: okr-weekly-writer
-description: 改写、润色或起草中文 OKR 周报、双周报、工作总结、述职材料和面向领导的进展汇报。Use when the user asks to optimize a weekly report, summarize good weekly-report style, turn task lists into OKR/KR-aligned outcomes, highlight work results without exaggeration, or write sections such as "简述近期OKR重要进展或规划" and "简述近期实质性思考和分享".
+description: 改写、润色或起草中文 OKR 周报、双周报、工作总结、述职材料和面向领导的进展汇报。可自动扫描 git commit log 生成周报。Use when the user asks to optimize a weekly report, summarize good weekly-report style, turn task lists into OKR/KR-aligned outcomes, auto-generate report from git logs, highlight work results without exaggeration, or write sections such as “简述近期OKR重要进展或规划” and “简述近期实质性思考和分享”.
 ---
 
 # OKR Weekly Report Writer
 
-使用这个 skill，把零散的工作记录改成清晰、可信、方便领导阅读的 OKR 周报。输出要让工作成果、推进进度、风险处理和后续动作一眼能看懂。
+使用这个 skill，把零散的工作记录或 git commit log 改成清晰、可信、方便领导阅读的 OKR 周报。输出要让工作成果、推进进度、风险处理和后续动作一眼能看懂。
 
 ## 工作流程
 
-1. 先识别周报背景：周期、OKR/KR 编号、阅读对象、用户角色、原始事项、已有数据、阻塞问题和后续计划。
-2. 如果用户提供优秀范例，先提炼范例的结构、措辞和表达习惯，再进行改写，尽量贴近公司内部风格。
-3. 如果用户要求结合个人 OKR，且存在 `references/my-2026-h1-okr.md`，读取该文件用于 KR 归类和措辞对齐；如果该文件不存在，继续按通用周报规则处理。
-4. 如果缺少关键数据，不要编造数字。可以不写该数据，或在必要时用简短的“可补充数据”提示。
-5. 按 OKR/KR 分组。每组不要只列任务，要写成“做了什么 + 结果/影响 + 当前状态/风险/下一步”。
-6. 加入“思考与分享”部分，体现判断力：风险识别、取舍、复盘、学习和具体后续动作。
-7. 语气保持客观、克制、专业。避免自夸、道歉式表达或流水账。
+1. **采集工作内容**：如果用户没有直接提供工作内容，自动扫描 git commit log 获取近两周工作日的工作记录（详见”Git Log 采集规则”）。如果用户已提供工作内容或指定了”手动模式”，跳过此步骤。
+2. 先识别周报背景：周期、OKR/KR 编号、阅读对象、用户角色、原始事项、已有数据、阻塞问题和后续计划。
+3. 如果用户提供优秀范例，先提炼范例的结构、措辞和表达习惯，再进行改写，尽量贴近公司内部风格。
+4. 如果存在 `references/my-2026-h1-okr.md`，读取该文件用于 KR 归类和措辞对齐；如果该文件不存在，继续按通用周报规则处理。
+5. 如果缺少关键数据，不要编造数字。可以不写该数据，或在必要时用简短的”可补充数据”提示。
+6. 按 OKR/KR 分组。每组不要只列任务，要写成”做了什么 + 结果/影响 + 当前状态/风险/下一步”。
+7. 加入”思考与分享”部分，体现判断力：风险识别、取舍、复盘、学习和具体后续动作。
+8. 语气保持客观、克制、专业。避免自夸、道歉式表达或流水账。
+
+## Git Log 采集规则
+
+### 扫描命令
+
+执行以下 bash 命令采集 commit（用 Bash 工具运行）：
+
+```bash
+# 日期计算：从今天往前推 14 天，排除周末得到工作日范围
+# 默认：SINCE = 今天 - 14 天，UNTIL = 今天
+# 如果用户指定了日期范围，使用用户指定的值
+AUTHOR=”张识康”
+REPO_ROOT=”/home/zsk/code/sier”
+SINCE=”<计算或指定的起始日期，格式 YYYY-MM-DD>”
+UNTIL=”<计算或指定的结束日期，格式 YYYY-MM-DD>”
+
+for group in ai backend frontend ops; do
+  for dir in $REPO_ROOT/$group/*/; do
+    [ -e “$dir/.git” ] || continue
+    commits=$(git -C “$dir” log --author=”$AUTHOR” \
+      --since=”$SINCE” --until=”$UNTIL” \
+      --format=”%ad %s” --date=short --no-merges 2>/dev/null)
+    [ -z “$commits” ] && continue
+    project=$(basename “$dir”)
+    echo “=== $group/$project ===”
+    echo “$commits”
+    echo “”
+  done
+done
+```
+
+### 过滤规则
+
+采集到 commit 后，过滤掉以下低信息量提交，不纳入工作事项：
+
+| 过滤模式 | 示例 | 说明 |
+|----------|------|------|
+| 单词无内容 | `stash`、`doc`、`version`、`test` | 只有标签没有描述 |
+| 纯操作 | `误操作恢复`、`stash`、`stash` | 无实质工作 |
+| 纯版本号 | `1.0.1`、`v2.3` | 版本打标 |
+| 空泛动词 | `修改`、`更新`、`调整`（后无具体内容） | 无法判断做了什么 |
+
+**保留**所有有实质工作描述的 commit，即使简短（如 `修复小红书订单解密问题`）。
+
+### 聚合规则
+
+将同一项目中**主题相关**的 commit 合并为一条工作事项：
+
+```
+# 原始（backend/operate）
+c4129222 小红书平台归因
+2f7e08ce 调试小红书广告归因回传
+dfbe8ad0 小红书广告调试
+
+# 合并后
+小红书广告归因：完成归因对接与回传调试
+```
+
+聚合维度：按项目 + 按功能/模块/平台（如”小红书”、”vivo”、”OCR”、”财务”）。
+
+### OKR/KR 归类
+
+根据 `references/my-2026-h1-okr.md` 中的归类建议，将每条聚合后的事项映射到对应 KR。无法明确归属的放到”其他工作”分组。
+
+归类完成后，进入”改写模式”按输出结构生成最终周报。
 
 ## 好周报的特点
 
