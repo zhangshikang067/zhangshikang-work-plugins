@@ -1,0 +1,18 @@
+{
+  "name": "work-reporter",
+  "version": "1.0.0",
+  "description": "工作汇报写作助手 - OKR 周报自动生成与月度绩效自评改写",
+  "author": "zhangshikang",
+  "license": "MIT",
+  "keywords": [
+    "周报",
+    "绩效",
+    "OKR",
+    "工作汇报",
+    "月度自评"
+  ],
+  "claude": {
+    "minVersion": "1.0.0",
+    "maxVersion": "2.0.0"
+  }
+}

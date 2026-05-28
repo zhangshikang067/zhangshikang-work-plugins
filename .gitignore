@@ -1,0 +1,12 @@
+# 用户运行时生成的个人数据文件
+**/references/*-config.md
+**/references/*-okr.md
+**/references/*-manager-feedback.md
+**/references/*-ai-improvement-suggestions.md
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
