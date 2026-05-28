@@ -1,59 +1,66 @@
 # zhangshikang-work-plugins
 
-个人工作插件合集，兼容 Claude Code 和 Codex 等 AI Agent。
+> 个人工作流插件合集，兼容 Claude Code / Codex 等 AI Agent
 
-## 插件列表
+## 插件
 
-### work-reporter
+| 插件 | 说明 |
+|------|------|
+| [work-reporter](./work-reporter/) | 工作汇报写作助手 — OKR 周报自动生成 & 月度绩效自评改写 |
 
-工作汇报写作助手，包含两个 skill：
-
-| Skill | 说明 |
-|-------|------|
-| `monthly-performance-writer` | 月度绩效自评改写，自动从周报提取工作、美化不足、沉淀经验 |
-| `okr-weekly-writer` | OKR 周报/双周报自动生成，支持 git commit 扫描和 OKR 归类对齐 |
+---
 
 ## 安装
 
-### Claude Code
+**Claude Code**
 
 ```bash
-# 方式一：克隆到插件目录
-git clone <repo-url> ~/.claude/plugins/zhangshikang-work-plugins
-
-# 方式二：在 Claude Code 中添加插件路径
-claude plugin add /path/to/zhangshikang-work-plugins/work-reporter
+# 克隆到插件目录
+git clone https://github.com/zhangshikang/zhangshikang-work-plugins.git \
+  ~/.claude/plugins/zhangshikang-work-plugins
 ```
 
-### Codex
+或在 Claude Code 会话中：
+
+```
+/install-plugin /path/to/zhangshikang-work-plugins/work-reporter
+```
+
+**Codex**
 
 ```bash
-# 克隆到 Codex 插件目录
-git clone <repo-url> ~/.codex/plugins/zhangshikang-work-plugins
+git clone https://github.com/zhangshikang/zhangshikang-work-plugins.git \
+  ~/.codex/plugins/zhangshikang-work-plugins
 ```
 
-## 使用
+## 快速开始
 
-安装后，在对话中直接触发：
+安装后在对话中直接说：
 
-- "帮我写月度绩效" → 触发 `monthly-performance-writer`
-- "帮我写周报" / "这周干了啥" → 触发 `okr-weekly-writer`
+| 你说 | 触发 |
+|------|------|
+| "帮我写周报" / "这周干了啥" | `okr-weekly-writer` — 扫描 git log，生成 OKR 对齐的周报 |
+| "帮我写月度绩效" / "写个月度自评" | `monthly-performance-writer` — 从周报提炼，生成月度绩效自评 |
 
-## 开发
+## 目录结构
 
 ```
 zhangshikang-work-plugins/
-├── work-reporter/                  # 插件
-│   ├── .claude-plugin/
-│   │   └── plugin.json
+├── work-reporter/                  # 工作汇报插件
+│   ├── .claude-plugin/plugin.json  #   插件清单
 │   ├── skills/
 │   │   ├── monthly-performance-writer/
-│   │   │   ├── SKILL.md
-│   │   │   └── references/
+│   │   │   ├── SKILL.md            #     月度绩效 skill
+│   │   │   └── references/         #     写法模板
 │   │   └── okr-weekly-writer/
-│   │       ├── SKILL.md
-│   │       ├── scripts/
-│   │       └── references/
+│   │       ├── SKILL.md            #     OKR 周报 skill
+│   │       ├── scripts/            #     git log 扫描脚本
+│   │       └── references/         #     OKR 模板
 │   └── README.md
-└── README.md
+├── .gitignore
+└── README.md                       # ← 你在这里
 ```
+
+## License
+
+MIT
