@@ -1,75 +1,83 @@
+<div align="center">
+
 # work-reporter
 
-> 工作汇报写作助手 — 一个插件搞定周报和绩效
+### Work Report Writing Assistant — One Plugin for Weekly Reports & Performance Reviews
 
-两个 skill 各司其职：周报从 git log 自动生成，绩效从周报自动提炼。
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
 
-## okr-weekly-writer — OKR 周报
+English | [中文](README_ZH.md)
 
-**触发**："帮我写周报" / "这周干了啥" / "写个双周报"
+</div>
 
-| 能力 | 说明 |
-|------|------|
-| git log 扫描 | 自动扫描多项目、多日期范围的 commit 记录 |
-| OKR 对齐 | 按用户 OKR 文件自动归类到对应 KR |
-| 手动模式 | 不扫 git，直接口述或粘贴工作内容 |
-| 配置持久化 | 首次配置后，老用户一步到位 |
+Two skills, each with its own focus: weekly reports are auto-generated from git logs, and performance reviews are distilled from weekly reports.
 
-**流程**：加载配置 → 交互采集参数（日期/项目/OKR）→ 扫描 git log → 过滤聚合 → 确认事项 → 改写生成
+## okr-weekly-writer — OKR Weekly Report
 
-## monthly-performance-writer — 月度绩效
+**Trigger**: "Help me write a weekly report" / "What did I do this week" / "Write a biweekly report"
 
-**触发**："帮我写月度绩效" / "写个月度自评" / "把这几周周报总结成绩效"
+| Feature | Description |
+|---------|-------------|
+| Git log scanning | Automatically scans commit history across multiple projects and date ranges |
+| OKR alignment | Categorizes work items to corresponding KRs based on user OKR files |
+| Manual mode | Skip git scanning — dictate or paste work content directly |
+| Persistent config | First-time setup saved; returning users can skip configuration |
 
-| 能力 | 说明 |
-|------|------|
-| 周报提炼 | 从多周周报中提取、去重、聚合工作事项 |
-| 经验深度分析 | 场景 + 认知 + 方法论沉淀，体现思考深度 |
-| 不足美化 | 包装为"追求更高标准时的发现"，展示进取心 |
-| 反馈闭环 | 自动记录领导反馈，下月自动生成"落实情况" |
+**Flow**: Load config → Collect parameters (date/project/OKR) → Scan git log → Filter & aggregate → Confirm items → Generate report
 
-**流程**：收集周报/月份/反馈 → 提取聚合 → 确认事项 → 改写生成 → 修订 → 持久化反馈记录
+## monthly-performance-writer — Monthly Performance Review
 
-## 输出示例
+**Trigger**: "Help me write a monthly performance review" / "Write a monthly self-evaluation" / "Summarize weekly reports into performance review"
 
-**周报输出**：
+| Feature | Description |
+|---------|-------------|
+| Weekly report extraction | Extract, deduplicate, and aggregate work items from multiple weekly reports |
+| In-depth experience analysis | Scenarios + insights + methodology — demonstrate depth of thinking |
+| Weakness framing | Repackage as "discoveries made while pursuing higher standards" |
+| Feedback loop | Automatically records manager feedback; generates "action items" next month |
+
+**Flow**: Collect reports/month/feedback → Extract & aggregate → Confirm items → Generate review → Revise → Persist feedback records
+
+## Output Examples
+
+**Weekly Report**:
 ```
-简述近期 OKR 重要进展或规划
+Recent OKR Progress or Plans
 
-O1-KR2：支付能力建设
-- 完成三方支付渠道接入与回调联调，按期通过验收...
+O1-KR2: Payment capability building
+- Completed third-party payment channel integration and callback testing, passed acceptance on schedule...
 
-简述近期实质性思考和分享
-- 在排查回调偶发失败时，发现网络重试机制存在竞态...
-```
-
-**绩效输出**：
-```
-工作回顾
-
-（1）主要工作快报
-- 完成支付模块全链路开发，接口响应时间降低 60%，支撑业务侧按时上线
-
-（2）经验和不足
-经验：
-- 通过抽象统一适配层，将渠道差异屏蔽在接入层...
-
-不足：
-- 在追求更快交付节奏的过程中，发现代码审查环节还有进一步精细化的空间
+Recent Substantive Thoughts and Insights
+- While investigating occasional callback failures, discovered a race condition in the retry mechanism...
 ```
 
-## 安装
+**Performance Review**:
+```
+Work Review
 
-**npx skills（推荐，支持 Claude Code / Codex / Cursor 等 50+ Agent）**
+(1) Key Work Summary
+- Completed full-stack payment module development, reduced API response time by 60%, supported business launch on schedule
+
+(2) Experience and Areas for Improvement
+Experience:
+- By abstracting a unified adapter layer, isolated channel differences at the integration layer...
+
+Areas for Improvement:
+- While pursuing a faster delivery pace, identified that the code review process has room for further refinement
+```
+
+## Installation
+
+**npx skills (Recommended — supports Claude Code / Codex / Cursor and 50+ agents)**
 
 ```bash
-# 安装所有 skills
+# Install all skills
 npx skills add zhangshikang067/zhangshikang-work-plugins
 
-# 只安装指定 skill
+# Install a specific skill
 npx skills add zhangshikang067/zhangshikang-work-plugins --skill okr-weekly-writer
 
-# 指定安装到 Claude Code / Codex
+# Install to Claude Code / Codex only
 npx skills add zhangshikang067/zhangshikang-work-plugins -a claude-code
 npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
 ```
@@ -77,10 +85,10 @@ npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
 **Claude Code**
 
 ```bash
-# 直接通过 GitHub URL 安装
+# Install directly via GitHub URL
 /install-plugin https://github.com/zhangshikang067/zhangshikang-work-plugins
 
-# 或克隆后本地安装
+# Or clone and install locally
 git clone https://github.com/zhangshikang067/zhangshikang-work-plugins.git \
   ~/.claude/plugins/zhangshikang-work-plugins
 /install-plugin ~/.claude/plugins/zhangshikang-work-plugins

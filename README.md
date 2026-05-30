@@ -1,80 +1,88 @@
+<div align="center">
+
 # zhangshikang-work-plugins
 
-> 个人工作流插件合集，兼容 Claude Code / Codex 等 AI Agent
+### Personal Workflow Plugin Collection for AI Coding Agents
 
-## 插件
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-| 插件 | 说明 |
-|------|------|
-| [work-reporter](./work-reporter/) | 工作汇报写作助手 — OKR 周报自动生成 & 月度绩效自评改写 |
+English | [中文](README_ZH.md)
+
+</div>
+
+## Plugins
+
+| Plugin | Description |
+|--------|-------------|
+| [work-reporter](./work-reporter/) | Work report writing assistant — OKR weekly report auto-generation & monthly performance review rewriting |
 
 ---
 
-## 安装
+## Installation
 
-**npx skills（推荐，支持 Claude Code / Codex / Cursor 等 50+ Agent）**
+**npx skills (Recommended — supports Claude Code / Codex / Cursor and 50+ agents)**
 
 ```bash
-# 安装所有 skills
+# Install all skills
 npx skills add zhangshikang067/zhangshikang-work-plugins
 
-# 只安装指定 skill
+# Install a specific skill
 npx skills add zhangshikang067/zhangshikang-work-plugins --skill okr-weekly-writer
 
-# 指定安装到 Claude Code
+# Install to Claude Code only
 npx skills add zhangshikang067/zhangshikang-work-plugins -a claude-code
 
-# 指定安装到 Codex
+# Install to Codex only
 npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
 ```
 
 **Claude Code**
 
-在 Claude Code 会话中运行：
+In a Claude Code session, run:
 
 ```
 /install-plugin https://github.com/zhangshikang067/zhangshikang-work-plugins
 ```
 
-或克隆后本地安装：
+Or clone and install locally:
 
 ```bash
 git clone https://github.com/zhangshikang067/zhangshikang-work-plugins.git \
   ~/.claude/plugins/zhangshikang-work-plugins
 ```
 
-然后在会话中：
+Then in the session:
 
 ```
 /install-plugin ~/.claude/plugins/zhangshikang-work-plugins
 ```
 
-## 快速开始
+## Quick Start
 
-安装后在对话中直接说：
+After installation, simply say:
 
-| 你说 | 触发 |
-|------|------|
-| "帮我写周报" / "这周干了啥" | `okr-weekly-writer` — 扫描 git log，生成 OKR 对齐的周报 |
-| "帮我写月度绩效" / "写个月度自评" | `monthly-performance-writer` — 从周报提炼，生成月度绩效自评 |
+| What you say | Triggered skill |
+|-------------|-----------------|
+| "Help me write a weekly report" / "What did I do this week" | `okr-weekly-writer` — scans git log, generates OKR-aligned weekly report |
+| "Help me write a monthly performance review" / "Write a monthly self-evaluation" | `monthly-performance-writer` — extracts from weekly reports, generates performance review |
 
-## 目录结构
+## Directory Structure
 
 ```
 zhangshikang-work-plugins/
-├── work-reporter/                  # 工作汇报插件
-│   ├── .claude-plugin/plugin.json  #   插件清单
+├── work-reporter/                  # Work report plugin
+│   ├── .claude-plugin/plugin.json  #   Plugin manifest
 │   ├── skills/
 │   │   ├── monthly-performance-writer/
-│   │   │   ├── SKILL.md            #     月度绩效 skill
-│   │   │   └── references/         #     写法模板
+│   │   │   ├── SKILL.md            #     Monthly performance skill
+│   │   │   └── references/         #     Writing templates
 │   │   └── okr-weekly-writer/
-│   │       ├── SKILL.md            #     OKR 周报 skill
-│   │       ├── scripts/            #     git log 扫描脚本
-│   │       └── references/         #     OKR 模板
+│   │       ├── SKILL.md            #     OKR weekly report skill
+│   │       ├── scripts/            #     Git log scanning scripts
+│   │       └── references/         #     OKR templates
 │   └── README.md
 ├── .gitignore
-└── README.md                       # ← 你在这里
+└── README.md                       # ← You are here
 ```
 
 ## License
