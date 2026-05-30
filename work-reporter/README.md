@@ -60,8 +60,24 @@ O1-KR2：支付能力建设
 
 ## 安装
 
+**npx skills（推荐，支持 Claude Code / Codex / Cursor 等 50+ Agent）**
+
 ```bash
-# Claude Code — 直接通过 GitHub URL 安装
+# 安装所有 skills
+npx skills add zhangshikang067/zhangshikang-work-plugins
+
+# 只安装指定 skill
+npx skills add zhangshikang067/zhangshikang-work-plugins --skill okr-weekly-writer
+
+# 指定安装到 Claude Code / Codex
+npx skills add zhangshikang067/zhangshikang-work-plugins -a claude-code
+npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
+```
+
+**Claude Code**
+
+```bash
+# 直接通过 GitHub URL 安装
 /install-plugin https://github.com/zhangshikang067/zhangshikang-work-plugins
 
 # 或克隆后本地安装

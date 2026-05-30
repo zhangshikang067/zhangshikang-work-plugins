@@ -9,10 +9,14 @@
       "name": "work-reporter",
       "description": "工作汇报写作助手 - OKR 周报自动生成与月度绩效自评改写",
       "version": "1.0.0",
+      "source": "./work-reporter",
+      "skills": [
+        "./work-reporter/skills/okr-weekly-writer",
+        "./work-reporter/skills/monthly-performance-writer"
+      ],
       "author": {
         "name": "zhangshikang"
       },
-      "source": "./work-reporter",
       "license": "MIT",
       "keywords": [
         "周报",

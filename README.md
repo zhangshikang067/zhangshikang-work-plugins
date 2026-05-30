@@ -12,6 +12,22 @@
 
 ## 安装
 
+**npx skills（推荐，支持 Claude Code / Codex / Cursor 等 50+ Agent）**
+
+```bash
+# 安装所有 skills
+npx skills add zhangshikang067/zhangshikang-work-plugins
+
+# 只安装指定 skill
+npx skills add zhangshikang067/zhangshikang-work-plugins --skill okr-weekly-writer
+
+# 指定安装到 Claude Code
+npx skills add zhangshikang067/zhangshikang-work-plugins -a claude-code
+
+# 指定安装到 Codex
+npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
+```
+
 **Claude Code**
 
 在 Claude Code 会话中运行：
@@ -31,13 +47,6 @@ git clone https://github.com/zhangshikang067/zhangshikang-work-plugins.git \
 
 ```
 /install-plugin ~/.claude/plugins/zhangshikang-work-plugins
-```
-
-**Codex**
-
-```bash
-git clone https://github.com/zhangshikang/zhangshikang-work-plugins.git \
-  ~/.codex/plugins/zhangshikang-work-plugins
 ```
 
 ## 快速开始
