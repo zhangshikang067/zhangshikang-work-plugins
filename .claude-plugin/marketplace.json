@@ -1,0 +1,26 @@
+{
+  "name": "zhangshikang-work-plugins",
+  "description": "个人工作流插件合集",
+  "owner": {
+    "name": "zhangshikang"
+  },
+  "plugins": [
+    {
+      "name": "work-reporter",
+      "description": "工作汇报写作助手 - OKR 周报自动生成与月度绩效自评改写",
+      "version": "1.0.0",
+      "author": {
+        "name": "zhangshikang"
+      },
+      "source": "./work-reporter",
+      "license": "MIT",
+      "keywords": [
+        "周报",
+        "绩效",
+        "OKR",
+        "工作汇报",
+        "月度自评"
+      ]
+    }
+  ]
+}
