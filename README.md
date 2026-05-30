@@ -14,16 +14,23 @@
 
 **Claude Code**
 
+在 Claude Code 会话中运行：
+
+```
+/install-plugin https://github.com/zhangshikang067/zhangshikang-work-plugins
+```
+
+或克隆后本地安装：
+
 ```bash
-# 克隆到插件目录
-git clone https://github.com/zhangshikang/zhangshikang-work-plugins.git \
+git clone https://github.com/zhangshikang067/zhangshikang-work-plugins.git \
   ~/.claude/plugins/zhangshikang-work-plugins
 ```
 
-或在 Claude Code 会话中：
+然后在会话中：
 
 ```
-/install-plugin /path/to/zhangshikang-work-plugins/work-reporter
+/install-plugin ~/.claude/plugins/zhangshikang-work-plugins
 ```
 
 **Codex**

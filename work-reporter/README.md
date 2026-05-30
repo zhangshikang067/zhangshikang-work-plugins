@@ -61,12 +61,13 @@ O1-KR2：支付能力建设
 ## 安装
 
 ```bash
-# Claude Code
-git clone https://github.com/zhangshikang/zhangshikang-work-plugins.git \
-  ~/.claude/plugins/zhangshikang-work-plugins
+# Claude Code — 直接通过 GitHub URL 安装
+/install-plugin https://github.com/zhangshikang067/zhangshikang-work-plugins
 
-# 或在会话中
-/install-plugin /path/to/work-reporter
+# 或克隆后本地安装
+git clone https://github.com/zhangshikang067/zhangshikang-work-plugins.git \
+  ~/.claude/plugins/zhangshikang-work-plugins
+/install-plugin ~/.claude/plugins/zhangshikang-work-plugins
 ```
 
 ## License
