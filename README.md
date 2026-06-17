@@ -18,7 +18,7 @@ English | [中文](README_ZH.md)
 
 ---
 
-## Installation
+## Installation / Update / Rollback
 
 **npx skills (Recommended — supports Claude Code / Codex / Cursor and 50+ agents)**
 
@@ -35,6 +35,22 @@ npx skills add zhangshikang067/zhangshikang-work-plugins -a claude-code
 # Install to Codex only
 npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
 ```
+
+Update or roll back versions:
+
+```bash
+# Update installed skills to the latest version
+npx skills update
+
+# Update global skills only
+npx skills update -g
+
+# Install or roll back to a specific tag
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.1.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
+```
+
+Installing with `#tag` pins that version. To return to the latest version, run the install command again without `#tag`.
 
 **Claude Code**
 
@@ -55,6 +71,20 @@ Then in the session:
 
 ```
 /install-plugin ~/.claude/plugins/zhangshikang-work-plugins
+```
+
+After local installation, update or roll back with git:
+
+```bash
+cd ~/.claude/plugins/zhangshikang-work-plugins
+git fetch --tags
+
+# Update to latest main
+git checkout main
+git pull --ff-only
+
+# Roll back to a specific tag
+git checkout 1.0.0
 ```
 
 ## Quick Start

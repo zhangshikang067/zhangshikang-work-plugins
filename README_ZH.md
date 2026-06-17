@@ -18,7 +18,7 @@
 
 ---
 
-## 安装
+## 安装 / 更新 / 回退
 
 **npx skills（推荐，支持 Claude Code / Codex / Cursor 等 50+ Agent）**
 
@@ -35,6 +35,22 @@ npx skills add zhangshikang067/zhangshikang-work-plugins -a claude-code
 # 指定安装到 Codex
 npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
 ```
+
+更新或回退版本：
+
+```bash
+# 更新已安装的 skills 到最新版本
+npx skills update
+
+# 只更新全局安装的 skills
+npx skills update -g
+
+# 安装或回退到指定 tag
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.1.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
+```
+
+使用 `#tag` 安装会固定到对应版本；需要回到最新版本时，重新使用不带 `#tag` 的安装命令。
 
 **Claude Code**
 
@@ -55,6 +71,20 @@ git clone https://github.com/zhangshikang067/zhangshikang-work-plugins.git \
 
 ```
 /install-plugin ~/.claude/plugins/zhangshikang-work-plugins
+```
+
+本地安装后可用 git 更新或回退：
+
+```bash
+cd ~/.claude/plugins/zhangshikang-work-plugins
+git fetch --tags
+
+# 更新到最新 main
+git checkout main
+git pull --ff-only
+
+# 回退到指定 tag
+git checkout 1.0.0
 ```
 
 ## 快速开始

@@ -66,7 +66,7 @@ Areas for Improvement:
 - While pursuing a faster delivery pace, identified that the code review process has room for further refinement
 ```
 
-## Installation
+## Installation / Update / Rollback
 
 **npx skills (Recommended — supports Claude Code / Codex / Cursor and 50+ agents)**
 
@@ -82,6 +82,22 @@ npx skills add zhangshikang067/zhangshikang-work-plugins -a claude-code
 npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
 ```
 
+Update or roll back versions:
+
+```bash
+# Update installed skills to the latest version
+npx skills update
+
+# Update global skills only
+npx skills update -g
+
+# Install or roll back to a specific tag
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.1.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
+```
+
+Installing with `#tag` pins that version. To return to the latest version, run the install command again without `#tag`.
+
 **Claude Code**
 
 ```bash
@@ -92,6 +108,20 @@ npx skills add zhangshikang067/zhangshikang-work-plugins -a codex
 git clone https://github.com/zhangshikang067/zhangshikang-work-plugins.git \
   ~/.claude/plugins/zhangshikang-work-plugins
 /install-plugin ~/.claude/plugins/zhangshikang-work-plugins
+```
+
+After local installation, update or roll back with git:
+
+```bash
+cd ~/.claude/plugins/zhangshikang-work-plugins
+git fetch --tags
+
+# Update to latest main
+git checkout main
+git pull --ff-only
+
+# Roll back to a specific tag
+git checkout 1.0.0
 ```
 
 ## License
