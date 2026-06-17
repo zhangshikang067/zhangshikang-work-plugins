@@ -10,7 +10,7 @@
 
 </div>
 
-两个 skill 各司其职：周报从 git log 自动生成，绩效从周报自动提炼。
+两个 skill 各司其职：周报从 git log 自动生成并归档，绩效从已归档周报自动提炼。
 
 ## okr-weekly-writer — OKR 周报
 
@@ -21,9 +21,10 @@
 | git log 扫描 | 自动扫描多项目、多日期范围的 commit 记录 |
 | OKR 对齐 | 按用户 OKR 文件自动归类到对应 KR |
 | 手动模式 | 不扫 git，直接口述或粘贴工作内容 |
+| 周报归档 | 用户确认最终版后自动保存到 `outputs/`，方便月底复用 |
 | 配置持久化 | 首次配置后，老用户一步到位 |
 
-**流程**：加载配置 → 交互采集参数（日期/项目/OKR）→ 扫描 git log → 过滤聚合 → 确认事项 → 改写生成
+**流程**：加载配置 → 交互采集参数（日期/项目/OKR）→ 扫描 git log → 过滤聚合 → 确认事项 → 改写生成 → 确认归档
 
 ## monthly-performance-writer — 月度绩效
 
@@ -31,12 +32,12 @@
 
 | 能力 | 说明 |
 |------|------|
-| 周报提炼 | 从多周周报中提取、去重、聚合工作事项 |
+| 周报提炼 | 自动读取已归档周报，也支持手动粘贴或指定文件 |
 | 经验深度分析 | 场景 + 认知 + 方法论沉淀，体现思考深度 |
 | 不足美化 | 包装为"追求更高标准时的发现"，展示进取心 |
 | 反馈闭环 | 自动记录领导反馈，下月自动生成"落实情况" |
 
-**流程**：收集周报/月份/反馈 → 提取聚合 → 确认事项 → 改写生成 → 修订 → 持久化反馈记录
+**流程**：确定月份 → 自动读取归档周报 → 补充反馈 → 提取聚合 → 确认事项 → 改写生成 → 修订 → 持久化反馈记录
 
 ## 输出示例
 
@@ -92,7 +93,7 @@ npx skills update
 npx skills update -g
 
 # 安装或回退到指定 tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.1.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.0'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 

@@ -3,6 +3,7 @@
 **/references/*-okr.md
 **/references/*-manager-feedback.md
 **/references/*-ai-improvement-suggestions.md
+**/outputs/*.md
 
 # IDE
 .idea/

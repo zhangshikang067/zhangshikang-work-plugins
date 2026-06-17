@@ -7,8 +7,8 @@
   "plugins": [
     {
       "name": "work-reporter",
-      "description": "工作汇报写作助手 - OKR 周报自动生成与月度绩效自评改写",
-      "version": "1.0.0",
+      "description": "工作汇报写作助手 - OKR 周报自动生成归档与月度绩效自评改写",
+      "version": "1.2.0",
       "source": "./work-reporter",
       "skills": [
         "./work-reporter/skills/okr-weekly-writer",

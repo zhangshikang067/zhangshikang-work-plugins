@@ -14,7 +14,7 @@
 
 | 插件 | 说明 |
 |------|------|
-| [work-reporter](./work-reporter/) | 工作汇报写作助手 — OKR 周报自动生成 & 月度绩效自评改写 |
+| [work-reporter](./work-reporter/) | 工作汇报写作助手 — OKR 周报自动生成归档 & 月度绩效自评改写 |
 
 ---
 
@@ -46,7 +46,7 @@ npx skills update
 npx skills update -g
 
 # 安装或回退到指定 tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.1.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.0'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
@@ -93,8 +93,8 @@ git checkout 1.0.0
 
 | 你说 | 触发 |
 |------|------|
-| "帮我写周报" / "这周干了啥" | `okr-weekly-writer` — 扫描 git log，生成 OKR 对齐的周报 |
-| "帮我写月度绩效" / "写个月度自评" | `monthly-performance-writer` — 从周报提炼，生成月度绩效自评 |
+| "帮我写周报" / "这周干了啥" | `okr-weekly-writer` — 扫描 git log，生成 OKR 对齐周报并归档 |
+| "帮我写月度绩效" / "写个月度自评" | `monthly-performance-writer` — 自动读取已归档周报，生成月度绩效自评 |
 
 ## 目录结构
 
@@ -109,7 +109,8 @@ zhangshikang-work-plugins/
 │   │   └── okr-weekly-writer/
 │   │       ├── SKILL.md            #     OKR 周报 skill
 │   │       ├── scripts/            #     git log 扫描脚本
-│   │       └── references/         #     OKR 模板
+│   │       ├── references/         #     OKR 模板
+│   │       └── outputs/            #     运行时周报归档（git 忽略）
 │   └── README.md
 ├── .gitignore
 └── README.md                       # ← 你在这里

@@ -10,7 +10,7 @@ English | [中文](README_ZH.md)
 
 </div>
 
-Two skills, each with its own focus: weekly reports are auto-generated from git logs, and performance reviews are distilled from weekly reports.
+Two skills, each with its own focus: weekly reports are generated from git logs and archived, while performance reviews are distilled from archived weekly reports.
 
 ## okr-weekly-writer — OKR Weekly Report
 
@@ -21,9 +21,10 @@ Two skills, each with its own focus: weekly reports are auto-generated from git 
 | Git log scanning | Automatically scans commit history across multiple projects and date ranges |
 | OKR alignment | Categorizes work items to corresponding KRs based on user OKR files |
 | Manual mode | Skip git scanning — dictate or paste work content directly |
+| Weekly archive | Saves the confirmed final weekly report to `outputs/` for month-end reuse |
 | Persistent config | First-time setup saved; returning users can skip configuration |
 
-**Flow**: Load config → Collect parameters (date/project/OKR) → Scan git log → Filter & aggregate → Confirm items → Generate report
+**Flow**: Load config → Collect parameters (date/project/OKR) → Scan git log → Filter & aggregate → Confirm items → Generate report → Confirm archive
 
 ## monthly-performance-writer — Monthly Performance Review
 
@@ -31,12 +32,12 @@ Two skills, each with its own focus: weekly reports are auto-generated from git 
 
 | Feature | Description |
 |---------|-------------|
-| Weekly report extraction | Extract, deduplicate, and aggregate work items from multiple weekly reports |
+| Weekly report extraction | Reads archived weekly reports automatically; also supports pasted content or file paths |
 | In-depth experience analysis | Scenarios + insights + methodology — demonstrate depth of thinking |
 | Weakness framing | Repackage as "discoveries made while pursuing higher standards" |
 | Feedback loop | Automatically records manager feedback; generates "action items" next month |
 
-**Flow**: Collect reports/month/feedback → Extract & aggregate → Confirm items → Generate review → Revise → Persist feedback records
+**Flow**: Determine month → Read archived weekly reports → Add feedback → Extract & aggregate → Confirm items → Generate review → Revise → Persist feedback records
 
 ## Output Examples
 
@@ -92,7 +93,7 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.1.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.0'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 

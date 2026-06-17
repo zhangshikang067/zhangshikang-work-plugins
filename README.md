@@ -14,7 +14,7 @@ English | [中文](README_ZH.md)
 
 | Plugin | Description |
 |--------|-------------|
-| [work-reporter](./work-reporter/) | Work report writing assistant — OKR weekly report auto-generation & monthly performance review rewriting |
+| [work-reporter](./work-reporter/) | Work report writing assistant — OKR weekly report generation, archiving & monthly performance review rewriting |
 
 ---
 
@@ -46,7 +46,7 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.1.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.0'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
@@ -93,8 +93,8 @@ After installation, simply say:
 
 | What you say | Triggered skill |
 |-------------|-----------------|
-| "Help me write a weekly report" / "What did I do this week" | `okr-weekly-writer` — scans git log, generates OKR-aligned weekly report |
-| "Help me write a monthly performance review" / "Write a monthly self-evaluation" | `monthly-performance-writer` — extracts from weekly reports, generates performance review |
+| "Help me write a weekly report" / "What did I do this week" | `okr-weekly-writer` — scans git log, generates and archives OKR-aligned weekly reports |
+| "Help me write a monthly performance review" / "Write a monthly self-evaluation" | `monthly-performance-writer` — reads archived weekly reports and generates performance reviews |
 
 ## Directory Structure
 
@@ -109,7 +109,8 @@ zhangshikang-work-plugins/
 │   │   └── okr-weekly-writer/
 │   │       ├── SKILL.md            #     OKR weekly report skill
 │   │       ├── scripts/            #     Git log scanning scripts
-│   │       └── references/         #     OKR templates
+│   │       ├── references/         #     OKR templates
+│   │       └── outputs/            #     Runtime weekly report archives (git ignored)
 │   └── README.md
 ├── .gitignore
 └── README.md                       # ← You are here
