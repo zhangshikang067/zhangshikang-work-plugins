@@ -46,7 +46,7 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.1'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
@@ -105,7 +105,7 @@ After installation, simply say:
 
 | What you say | Triggered skill |
 |-------------|-----------------|
-| "Help me write a weekly report" / "What did I do this week" | `okr-weekly-writer` — scans git log, generates and archives OKR-aligned weekly reports |
+| "Help me write a weekly report" / "What did I do this week" | `okr-weekly-writer` — scans git log, aligns with period-specific OKRs, and archives weekly reports |
 | "Help me write a monthly performance review" / "Write a monthly self-evaluation" | `monthly-performance-writer` — reads archived weekly reports and generates performance reviews |
 | "Import historical weekly reports" / "Initialize historical performance data" | `work-history-initializer` — imports past weekly reports, monthly reviews, OKRs, and feedback |
 

@@ -97,7 +97,17 @@ mkdir -p "$CONFIG_DIR" "$OKR_DIR" "$WEEKLY_OUTPUT_DIR" "$MONTHLY_REVIEW_DIR" "$F
 
 OKR 文件名：
 
-- `{用户名}-okr.md`
+- 默认当前 OKR：`{用户名}-okr.md`
+- 显式当前 OKR：`{用户名}-okr-current.md`
+- 按周期拆分：`{用户名}-okr-YYYYh1.md`、`{用户名}-okr-YYYYh2.md`
+- 历史复盘：`{用户名}-okr-review-YYYYh1.md`、`{用户名}-okr-review-YYYYh2.md`
+
+导入 OKR 时不要把所有文件强制合并成 `{用户名}-okr.md`。如果原文件名已经包含周期或性质，应保留语义后缀。例如：
+
+- `张识康-okr-2026h1.md` 保持为 `张识康-okr-2026h1.md`
+- `张识康-okr-review-2025h2.md` 保持为 `张识康-okr-review-2025h2.md`
+
+只有用户明确表示“这是当前默认 OKR”时，才写入或覆盖 `{用户名}-okr.md`。
 
 如目标文件已存在，通过 `AskUserQuestion` 询问：
 

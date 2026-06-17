@@ -19,7 +19,7 @@ Three skills, each with its own focus: weekly reports are generated from git log
 | Feature | Description |
 |---------|-------------|
 | Git log scanning | Automatically scans commit history across multiple projects and date ranges |
-| OKR alignment | Categorizes work items to corresponding KRs based on user OKR files |
+| OKR alignment | Supports multiple period-specific OKR files and selects by report period or user confirmation |
 | Manual mode | Skip git scanning — dictate or paste work content directly |
 | Weekly archive | Saves the confirmed final weekly report to `~/.work-reporter/weekly-reports/` for month-end reuse |
 | Persistent config | First-time setup saved; returning users can skip configuration |
@@ -49,6 +49,7 @@ Three skills, each with its own focus: weekly reports are generated from git log
 | Historical weekly import | Imports past OKR weekly and biweekly reports into `~/.work-reporter/weekly-reports/` |
 | Monthly review import | Imports past performance reviews into `~/.work-reporter/monthly-reviews/` |
 | Metadata backfill | Adds author, period, import time, and other front matter without rewriting content |
+| Multi-OKR import | Preserves semantic file names such as `okr-2026h1` and `okr-review-2025h2` |
 | Batch initialization | Supports pasted content, single files, or directories; skips conflicts by default |
 
 User config, OKRs, weekly report archives, monthly review archives, and performance feedback are saved under `~/.work-reporter/` by default. Updating or rolling back the plugin only replaces skill program files and does not delete runtime data.
@@ -107,7 +108,7 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.1'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 

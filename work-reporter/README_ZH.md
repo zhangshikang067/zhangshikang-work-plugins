@@ -19,7 +19,7 @@
 | 能力 | 说明 |
 |------|------|
 | git log 扫描 | 自动扫描多项目、多日期范围的 commit 记录 |
-| OKR 对齐 | 按用户 OKR 文件自动归类到对应 KR |
+| OKR 对齐 | 支持多个周期 OKR 文件，按周报日期选择或让用户确认 |
 | 手动模式 | 不扫 git，直接口述或粘贴工作内容 |
 | 周报归档 | 用户确认最终版后自动保存到 `~/.work-reporter/weekly-reports/`，方便月底复用 |
 | 配置持久化 | 首次配置后，老用户一步到位 |
@@ -49,6 +49,7 @@
 | 历史周报导入 | 将过往 OKR 周报、双周报整理到 `~/.work-reporter/weekly-reports/` |
 | 月度绩效导入 | 将过往绩效自评整理到 `~/.work-reporter/monthly-reviews/` |
 | 元数据补齐 | 为历史内容补齐作者、周期、导入时间等 front matter |
+| 多 OKR 导入 | 保留 `okr-2026h1`、`okr-review-2025h2` 等语义化文件名 |
 | 批量初始化 | 支持粘贴内容、单文件或目录导入，冲突时默认不覆盖 |
 
 用户配置、OKR、周报归档、月度绩效归档和绩效反馈默认保存到 `~/.work-reporter/`。插件更新或回退只替换 skill 程序文件，不会删除这些运行时数据。
@@ -107,7 +108,7 @@ npx skills update
 npx skills update -g
 
 # 安装或回退到指定 tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.1'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 

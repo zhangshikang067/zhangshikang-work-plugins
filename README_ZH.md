@@ -46,7 +46,7 @@ npx skills update
 npx skills update -g
 
 # 安装或回退到指定 tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.1'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
@@ -105,7 +105,7 @@ git checkout 1.0.0
 
 | 你说 | 触发 |
 |------|------|
-| "帮我写周报" / "这周干了啥" | `okr-weekly-writer` — 扫描 git log，生成 OKR 对齐周报并归档 |
+| "帮我写周报" / "这周干了啥" | `okr-weekly-writer` — 扫描 git log，按周期 OKR 对齐并归档周报 |
 | "帮我写月度绩效" / "写个月度自评" | `monthly-performance-writer` — 自动读取已归档周报，生成月度绩效自评 |
 | "导入历史周报" / "初始化历史绩效数据" | `work-history-initializer` — 导入过往周报、月度绩效、OKR 和反馈 |
 
