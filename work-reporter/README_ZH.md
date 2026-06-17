@@ -10,7 +10,7 @@
 
 </div>
 
-两个 skill 各司其职：周报从 git log 自动生成并归档，绩效从已归档周报自动提炼。
+三个 skill 各司其职：周报从 git log 自动生成并归档，绩效从已归档周报自动提炼，历史初始化负责把过往材料导入数据目录。
 
 ## okr-weekly-writer — OKR 周报
 
@@ -34,12 +34,24 @@
 |------|------|
 | 周报提炼 | 自动读取已归档周报，也支持手动粘贴或指定文件 |
 | 经验深度分析 | 场景 + 认知 + 方法论沉淀，体现思考深度 |
+| 历史绩效参考 | 读取已归档月度绩效，保持表达风格和工作连续性 |
 | 不足美化 | 包装为"追求更高标准时的发现"，展示进取心 |
 | 反馈闭环 | 自动记录领导反馈，下月自动生成"落实情况" |
 
-**流程**：确定月份 → 自动读取归档周报 → 补充反馈 → 提取聚合 → 确认事项 → 改写生成 → 修订 → 持久化反馈记录
+**流程**：确定月份 → 自动读取归档周报 → 补充反馈 → 提取聚合 → 确认事项 → 改写生成 → 修订 → 归档月度绩效与反馈
 
-用户配置、OKR、周报归档和绩效反馈默认保存到 `~/.work-reporter/`。插件更新或回退只替换 skill 程序文件，不会删除这些运行时数据。
+## work-history-initializer — 历史数据初始化
+
+**触发**："导入历史周报" / "初始化历史绩效数据" / "把以前写过的月度绩效导入"
+
+| 能力 | 说明 |
+|------|------|
+| 历史周报导入 | 将过往 OKR 周报、双周报整理到 `~/.work-reporter/weekly-reports/` |
+| 月度绩效导入 | 将过往绩效自评整理到 `~/.work-reporter/monthly-reviews/` |
+| 元数据补齐 | 为历史内容补齐作者、周期、导入时间等 front matter |
+| 批量初始化 | 支持粘贴内容、单文件或目录导入，冲突时默认不覆盖 |
+
+用户配置、OKR、周报归档、月度绩效归档和绩效反馈默认保存到 `~/.work-reporter/`。插件更新或回退只替换 skill 程序文件，不会删除这些运行时数据。
 
 ## 输出示例
 
@@ -95,7 +107,7 @@ npx skills update
 npx skills update -g
 
 # 安装或回退到指定 tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.1'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.0'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 

@@ -14,7 +14,7 @@ English | [中文](README_ZH.md)
 
 | Plugin | Description |
 |--------|-------------|
-| [work-reporter](./work-reporter/) | Work report writing assistant — OKR weekly report generation, archiving & monthly performance review rewriting |
+| [work-reporter](./work-reporter/) | Work report writing assistant — OKR weekly report generation, monthly review rewriting & history initialization |
 
 ---
 
@@ -46,7 +46,7 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.1'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.0'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
@@ -107,8 +107,9 @@ After installation, simply say:
 |-------------|-----------------|
 | "Help me write a weekly report" / "What did I do this week" | `okr-weekly-writer` — scans git log, generates and archives OKR-aligned weekly reports |
 | "Help me write a monthly performance review" / "Write a monthly self-evaluation" | `monthly-performance-writer` — reads archived weekly reports and generates performance reviews |
+| "Import historical weekly reports" / "Initialize historical performance data" | `work-history-initializer` — imports past weekly reports, monthly reviews, OKRs, and feedback |
 
-User config, OKRs, weekly report archives, and performance feedback are saved under `~/.work-reporter/` by default, so they are not removed by `npx skills update`.
+User config, OKRs, weekly report archives, monthly review archives, and performance feedback are saved under `~/.work-reporter/` by default, so they are not removed by `npx skills update`.
 
 ## Directory Structure
 
@@ -120,10 +121,12 @@ zhangshikang-work-plugins/
 │   │   ├── monthly-performance-writer/
 │   │   │   ├── SKILL.md            #     Monthly performance skill
 │   │   │   └── references/         #     Writing templates
-│   │   └── okr-weekly-writer/
-│   │       ├── SKILL.md            #     OKR weekly report skill
-│   │       ├── scripts/            #     Git log scanning scripts
-│   │       └── references/         #     OKR templates
+│   │   ├── okr-weekly-writer/
+│   │   │   ├── SKILL.md            #     OKR weekly report skill
+│   │   │   ├── scripts/            #     Git log scanning scripts
+│   │   │   └── references/         #     OKR templates
+│   │   └── work-history-initializer/
+│   │       └── SKILL.md            #     History initialization skill
 │   └── README.md
 ├── .gitignore
 └── README.md                       # ← You are here

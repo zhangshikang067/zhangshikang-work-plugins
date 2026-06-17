@@ -10,7 +10,7 @@ English | [中文](README_ZH.md)
 
 </div>
 
-Two skills, each with its own focus: weekly reports are generated from git logs and archived, while performance reviews are distilled from archived weekly reports.
+Three skills, each with its own focus: weekly reports are generated from git logs and archived, performance reviews are distilled from archived weekly reports, and history initialization imports past materials into the data directory.
 
 ## okr-weekly-writer — OKR Weekly Report
 
@@ -34,12 +34,24 @@ Two skills, each with its own focus: weekly reports are generated from git logs 
 |---------|-------------|
 | Weekly report extraction | Reads archived weekly reports automatically; also supports pasted content or file paths |
 | In-depth experience analysis | Scenarios + insights + methodology — demonstrate depth of thinking |
+| Historical review reference | Reads archived monthly reviews to keep writing style and continuity consistent |
 | Weakness framing | Repackage as "discoveries made while pursuing higher standards" |
 | Feedback loop | Automatically records manager feedback; generates "action items" next month |
 
-**Flow**: Determine month → Read archived weekly reports → Add feedback → Extract & aggregate → Confirm items → Generate review → Revise → Persist feedback records
+**Flow**: Determine month → Read archived weekly reports → Add feedback → Extract & aggregate → Confirm items → Generate review → Revise → Archive monthly review and feedback
 
-User config, OKRs, weekly report archives, and performance feedback are saved under `~/.work-reporter/` by default. Updating or rolling back the plugin only replaces skill program files and does not delete runtime data.
+## work-history-initializer — History Initialization
+
+**Trigger**: "Import historical weekly reports" / "Initialize historical performance data" / "Import previous monthly reviews"
+
+| Feature | Description |
+|---------|-------------|
+| Historical weekly import | Imports past OKR weekly and biweekly reports into `~/.work-reporter/weekly-reports/` |
+| Monthly review import | Imports past performance reviews into `~/.work-reporter/monthly-reviews/` |
+| Metadata backfill | Adds author, period, import time, and other front matter without rewriting content |
+| Batch initialization | Supports pasted content, single files, or directories; skips conflicts by default |
+
+User config, OKRs, weekly report archives, monthly review archives, and performance feedback are saved under `~/.work-reporter/` by default. Updating or rolling back the plugin only replaces skill program files and does not delete runtime data.
 
 ## Output Examples
 
@@ -95,7 +107,7 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.1'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.0'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 

@@ -14,7 +14,7 @@
 
 | 插件 | 说明 |
 |------|------|
-| [work-reporter](./work-reporter/) | 工作汇报写作助手 — OKR 周报自动生成归档 & 月度绩效自评改写 |
+| [work-reporter](./work-reporter/) | 工作汇报写作助手 — OKR 周报自动生成归档、月度绩效自评改写 & 历史数据初始化 |
 
 ---
 
@@ -46,7 +46,7 @@ npx skills update
 npx skills update -g
 
 # 安装或回退到指定 tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.1'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.0'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
@@ -107,8 +107,9 @@ git checkout 1.0.0
 |------|------|
 | "帮我写周报" / "这周干了啥" | `okr-weekly-writer` — 扫描 git log，生成 OKR 对齐周报并归档 |
 | "帮我写月度绩效" / "写个月度自评" | `monthly-performance-writer` — 自动读取已归档周报，生成月度绩效自评 |
+| "导入历史周报" / "初始化历史绩效数据" | `work-history-initializer` — 导入过往周报、月度绩效、OKR 和反馈 |
 
-用户配置、OKR、周报归档和绩效反馈默认保存到 `~/.work-reporter/`，不会因为 `npx skills update` 重装插件而丢失。
+用户配置、OKR、周报归档、月度绩效归档和绩效反馈默认保存到 `~/.work-reporter/`，不会因为 `npx skills update` 重装插件而丢失。
 
 ## 目录结构
 
@@ -120,10 +121,12 @@ zhangshikang-work-plugins/
 │   │   ├── monthly-performance-writer/
 │   │   │   ├── SKILL.md            #     月度绩效 skill
 │   │   │   └── references/         #     写法模板
-│   │   └── okr-weekly-writer/
-│   │       ├── SKILL.md            #     OKR 周报 skill
-│   │       ├── scripts/            #     git log 扫描脚本
-│   │       └── references/         #     OKR 模板
+│   │   ├── okr-weekly-writer/
+│   │   │   ├── SKILL.md            #     OKR 周报 skill
+│   │   │   ├── scripts/            #     git log 扫描脚本
+│   │   │   └── references/         #     OKR 模板
+│   │   └── work-history-initializer/
+│   │       └── SKILL.md            #     历史数据初始化 skill
 │   └── README.md
 ├── .gitignore
 └── README.md                       # ← 你在这里
