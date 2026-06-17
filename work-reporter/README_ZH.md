@@ -21,7 +21,7 @@
 | git log 扫描 | 自动扫描多项目、多日期范围的 commit 记录 |
 | OKR 对齐 | 按用户 OKR 文件自动归类到对应 KR |
 | 手动模式 | 不扫 git，直接口述或粘贴工作内容 |
-| 周报归档 | 用户确认最终版后自动保存到 `outputs/`，方便月底复用 |
+| 周报归档 | 用户确认最终版后自动保存到 `~/.work-reporter/weekly-reports/`，方便月底复用 |
 | 配置持久化 | 首次配置后，老用户一步到位 |
 
 **流程**：加载配置 → 交互采集参数（日期/项目/OKR）→ 扫描 git log → 过滤聚合 → 确认事项 → 改写生成 → 确认归档
@@ -38,6 +38,8 @@
 | 反馈闭环 | 自动记录领导反馈，下月自动生成"落实情况" |
 
 **流程**：确定月份 → 自动读取归档周报 → 补充反馈 → 提取聚合 → 确认事项 → 改写生成 → 修订 → 持久化反馈记录
+
+用户配置、OKR、周报归档和绩效反馈默认保存到 `~/.work-reporter/`。插件更新或回退只替换 skill 程序文件，不会删除这些运行时数据。
 
 ## 输出示例
 
@@ -93,11 +95,23 @@ npx skills update
 npx skills update -g
 
 # 安装或回退到指定 tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.1'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
 使用 `#tag` 安装会固定到对应版本；需要回到最新版本时，重新使用不带 `#tag` 的安装命令。
+
+如果你已经使用 `v1.2.0` 生成过周报归档或配置，更新前先迁移旧数据：
+
+```bash
+SKILLS_ROOT="${SKILLS_ROOT:-$HOME/.agents/skills}"
+mkdir -p ~/.work-reporter/config ~/.work-reporter/okr ~/.work-reporter/weekly-reports ~/.work-reporter/feedback
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/references/*-config.md ~/.work-reporter/config/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/references/*-okr.md ~/.work-reporter/okr/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/outputs/*.md ~/.work-reporter/weekly-reports/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/monthly-performance-writer"/references/*-manager-feedback.md ~/.work-reporter/feedback/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/monthly-performance-writer"/references/*-ai-improvement-suggestions.md ~/.work-reporter/feedback/ 2>/dev/null || true
+```
 
 **Claude Code**
 

@@ -4,6 +4,7 @@
 **/references/*-manager-feedback.md
 **/references/*-ai-improvement-suggestions.md
 **/outputs/*.md
+.work-reporter/
 
 # IDE
 .idea/

@@ -46,11 +46,23 @@ npx skills update
 npx skills update -g
 
 # 安装或回退到指定 tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.1'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
 使用 `#tag` 安装会固定到对应版本；需要回到最新版本时，重新使用不带 `#tag` 的安装命令。
+
+如果你已经使用 `v1.2.0` 生成过周报归档或配置，更新前先迁移旧数据：
+
+```bash
+SKILLS_ROOT="${SKILLS_ROOT:-$HOME/.agents/skills}"
+mkdir -p ~/.work-reporter/config ~/.work-reporter/okr ~/.work-reporter/weekly-reports ~/.work-reporter/feedback
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/references/*-config.md ~/.work-reporter/config/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/references/*-okr.md ~/.work-reporter/okr/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/outputs/*.md ~/.work-reporter/weekly-reports/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/monthly-performance-writer"/references/*-manager-feedback.md ~/.work-reporter/feedback/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/monthly-performance-writer"/references/*-ai-improvement-suggestions.md ~/.work-reporter/feedback/ 2>/dev/null || true
+```
 
 **Claude Code**
 
@@ -96,6 +108,8 @@ git checkout 1.0.0
 | "帮我写周报" / "这周干了啥" | `okr-weekly-writer` — 扫描 git log，生成 OKR 对齐周报并归档 |
 | "帮我写月度绩效" / "写个月度自评" | `monthly-performance-writer` — 自动读取已归档周报，生成月度绩效自评 |
 
+用户配置、OKR、周报归档和绩效反馈默认保存到 `~/.work-reporter/`，不会因为 `npx skills update` 重装插件而丢失。
+
 ## 目录结构
 
 ```
@@ -109,8 +123,7 @@ zhangshikang-work-plugins/
 │   │   └── okr-weekly-writer/
 │   │       ├── SKILL.md            #     OKR 周报 skill
 │   │       ├── scripts/            #     git log 扫描脚本
-│   │       ├── references/         #     OKR 模板
-│   │       └── outputs/            #     运行时周报归档（git 忽略）
+│   │       └── references/         #     OKR 模板
 │   └── README.md
 ├── .gitignore
 └── README.md                       # ← 你在这里

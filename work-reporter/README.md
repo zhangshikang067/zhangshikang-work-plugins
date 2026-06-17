@@ -21,7 +21,7 @@ Two skills, each with its own focus: weekly reports are generated from git logs 
 | Git log scanning | Automatically scans commit history across multiple projects and date ranges |
 | OKR alignment | Categorizes work items to corresponding KRs based on user OKR files |
 | Manual mode | Skip git scanning — dictate or paste work content directly |
-| Weekly archive | Saves the confirmed final weekly report to `outputs/` for month-end reuse |
+| Weekly archive | Saves the confirmed final weekly report to `~/.work-reporter/weekly-reports/` for month-end reuse |
 | Persistent config | First-time setup saved; returning users can skip configuration |
 
 **Flow**: Load config → Collect parameters (date/project/OKR) → Scan git log → Filter & aggregate → Confirm items → Generate report → Confirm archive
@@ -38,6 +38,8 @@ Two skills, each with its own focus: weekly reports are generated from git logs 
 | Feedback loop | Automatically records manager feedback; generates "action items" next month |
 
 **Flow**: Determine month → Read archived weekly reports → Add feedback → Extract & aggregate → Confirm items → Generate review → Revise → Persist feedback records
+
+User config, OKRs, weekly report archives, and performance feedback are saved under `~/.work-reporter/` by default. Updating or rolling back the plugin only replaces skill program files and does not delete runtime data.
 
 ## Output Examples
 
@@ -93,11 +95,23 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.1'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
 Installing with `#tag` pins that version. To return to the latest version, run the install command again without `#tag`.
+
+If you have already generated archives or config with `v1.2.0`, migrate old data before updating:
+
+```bash
+SKILLS_ROOT="${SKILLS_ROOT:-$HOME/.agents/skills}"
+mkdir -p ~/.work-reporter/config ~/.work-reporter/okr ~/.work-reporter/weekly-reports ~/.work-reporter/feedback
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/references/*-config.md ~/.work-reporter/config/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/references/*-okr.md ~/.work-reporter/okr/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/outputs/*.md ~/.work-reporter/weekly-reports/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/monthly-performance-writer"/references/*-manager-feedback.md ~/.work-reporter/feedback/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/monthly-performance-writer"/references/*-ai-improvement-suggestions.md ~/.work-reporter/feedback/ 2>/dev/null || true
+```
 
 **Claude Code**
 

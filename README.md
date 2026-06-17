@@ -46,11 +46,23 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.0'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.2.1'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
 Installing with `#tag` pins that version. To return to the latest version, run the install command again without `#tag`.
+
+If you have already generated archives or config with `v1.2.0`, migrate old data before updating:
+
+```bash
+SKILLS_ROOT="${SKILLS_ROOT:-$HOME/.agents/skills}"
+mkdir -p ~/.work-reporter/config ~/.work-reporter/okr ~/.work-reporter/weekly-reports ~/.work-reporter/feedback
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/references/*-config.md ~/.work-reporter/config/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/references/*-okr.md ~/.work-reporter/okr/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/okr-weekly-writer"/outputs/*.md ~/.work-reporter/weekly-reports/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/monthly-performance-writer"/references/*-manager-feedback.md ~/.work-reporter/feedback/ 2>/dev/null || true
+cp -n "$SKILLS_ROOT/monthly-performance-writer"/references/*-ai-improvement-suggestions.md ~/.work-reporter/feedback/ 2>/dev/null || true
+```
 
 **Claude Code**
 
@@ -96,6 +108,8 @@ After installation, simply say:
 | "Help me write a weekly report" / "What did I do this week" | `okr-weekly-writer` — scans git log, generates and archives OKR-aligned weekly reports |
 | "Help me write a monthly performance review" / "Write a monthly self-evaluation" | `monthly-performance-writer` — reads archived weekly reports and generates performance reviews |
 
+User config, OKRs, weekly report archives, and performance feedback are saved under `~/.work-reporter/` by default, so they are not removed by `npx skills update`.
+
 ## Directory Structure
 
 ```
@@ -109,8 +123,7 @@ zhangshikang-work-plugins/
 │   │   └── okr-weekly-writer/
 │   │       ├── SKILL.md            #     OKR weekly report skill
 │   │       ├── scripts/            #     Git log scanning scripts
-│   │       ├── references/         #     OKR templates
-│   │       └── outputs/            #     Runtime weekly report archives (git ignored)
+│   │       └── references/         #     OKR templates
 │   └── README.md
 ├── .gitignore
 └── README.md                       # ← You are here
