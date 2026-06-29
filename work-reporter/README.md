@@ -108,7 +108,7 @@ npx skills update
 npx skills update -g
 
 # Install or roll back to a specific tag
-npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.2'
+npx skills add 'zhangshikang067/zhangshikang-work-plugins#v1.3.3'
 npx skills add 'zhangshikang067/zhangshikang-work-plugins#1.0.0'
 ```
 
